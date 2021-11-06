@@ -28,7 +28,7 @@ class Migrator
 		"posts" => 0
 	];
 
-	const FLARUM_AVATAR_PATH = "assets/avatars/";
+	const FLARUM_AVATAR_PATH = "public/assets/avatars/";
 
 	/**
 	 * Migrator constructor
