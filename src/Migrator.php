@@ -86,7 +86,7 @@ class Migrator
 	{
 		$this->disableForeignKeyChecks();
 		
-		$users = $this->getMybbConnection()->query("SELECT uid, username, email, postnum, threadnum, FROM_UNIXTIME( regdate ) AS regdate, FROM_UNIXTIME( lastvisit ) AS lastvisit, usergroup, additionalgroups, avatar, lastip FROM {$this->getPrefix()}users");
+		$users = $this->getMybbConnection()->query("SELECT uid, username, email, postnum, password, threadnum, FROM_UNIXTIME( regdate ) AS regdate, FROM_UNIXTIME( lastvisit ) AS lastvisit, usergroup, additionalgroups, avatar, lastip FROM {$this->getPrefix()}users");
 		
 		if($users->num_rows > 0)
 		{
@@ -97,7 +97,7 @@ class Migrator
 				$newUser = User::register(
 					$row->username, 
 					$row->email, 
-					password_hash(time(), PASSWORD_BCRYPT)
+					$row->password 
 				);
 
 				$newUser->activate();
